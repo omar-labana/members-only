@@ -1,31 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<h1 class="text-center">Hello there</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Author</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- <%= user_session  %> -->
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.author %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<% @posts.each do |post| %>
+<div>
+  <div>
+    <h3> <%= post.title %> </h3>
+  </div>
+    <div>
+        <% if user_signed_in? %>
+        <strong> Author: <%= post.author %> </strong>
+        <% else %>
+        <strong>Anonymous Author</strong>
+        <% end %>
+        
+        <p> <%= post.body %> </p>
 
-<%= link_to 'New Post', new_post_path %>
+    </div>
+  
+</div>
+<% end %>
