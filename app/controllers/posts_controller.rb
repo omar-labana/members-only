@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create new]
-  
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
