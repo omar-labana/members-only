@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[edit update show destory]
-  before_action :authenticate, only: %i[show edit]
-
+  before_action :authenticate_user!, only: %i[create new]
+  before_action :authorize, only: %i[create new]
+  
   # GET /posts or /posts.json
   def index
     @posts = Post.all
