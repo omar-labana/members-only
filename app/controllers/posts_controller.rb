@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create new]
-  before_action :authorize, only: %i[create new]
   
   # GET /posts or /posts.json
   def index
@@ -22,7 +21,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
+    @post.author = current_user.email
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_url, notice: 'Post was successfully created.' }
